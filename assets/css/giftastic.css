@@ -1,0 +1,55 @@
+body {
+    background-color: #e8e8e8;
+}
+
+button {
+    margin: 20px;
+    border: none;
+    background-color:#1971ff;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+}
+
+button:hover {
+    box-shadow: 0px 0px 5px black;
+}
+
+input {
+    border: none;
+}
+
+input:hover {
+    box-shadow: 0px 0px 3px black;
+}
+
+#searchField {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#gifField {
+    margin: 20px;
+    text-align: center;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+#click {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#title {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#addMovie {
+    background-color: #ff003b;
+}
