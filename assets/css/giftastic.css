@@ -11,6 +11,10 @@ button {
     color: white;
 }
 
+#buttons {
+    margin-left: 22px;
+}
+
 button:hover {
     box-shadow: 0px 0px 5px black;
 }
@@ -52,4 +56,9 @@ td {
 
 #addMovie {
     background-color: #ff003b;
+}
+
+#download {
+    padding: 5px;
+    background-color: #303030;
 }

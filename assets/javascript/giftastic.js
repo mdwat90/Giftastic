@@ -7,9 +7,10 @@ $(document).ready(function () {
         $("#buttons").append("<button class='movie'>" + topics[i] + "</button>");
     }
 
+    $("#buttons").hide();
+    $("#buttons").fadeIn(2000);
     $("#search").html("<input type='text' id='input' placeholder = 'Movie Title'>");
     $("#searchButton").html("<button type='submit' id='addMovie'>" + "Add Movie" + "</button>");
-
 
     $("#addMovie").on("click", function () {
         topics.push($("#input").val());
@@ -18,15 +19,17 @@ $(document).ready(function () {
     });
 
     var clickGif = $("<div class='row' id='click'>");
-    var clickText = $("<p>").text("Click Gifs to Play!");
+    var clickText = $("<p id='clickText'>").text("Click Gifs to Play!");
     clickGif.append(clickText);
     $("#gifField").prepend(clickGif);
     clickGif.hide();
 
 
+
     $(document).on("click", ".movie", function () {
-        clickGif.show();
+        clickGif.fadeIn(1000);
         var movie = $(this).text();
+        var counter = 0;
         var queryurl = "http://api.giphy.com/v1/gifs/search?q=" + movie + "&api_key=mGLsTKX4l3wSH9hTzlisvBaVJFzRhAC9";
         var queryurl2 = "http://www.omdbapi.com/?apikey=trilogy&" + movie;
         $.ajax({
@@ -37,12 +40,14 @@ $(document).ready(function () {
                 rating: "g",
             }
         }).then(function (response) {
-            // console.log(response);
+            console.log(response);
             results = response.data;
             for (var i = 0; i < results.length; i++) {
+                counter++;
                 var gifDiv = $("<div class='col-lg-4 col-md-6 col-sm-12' id='movieGif'>");
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rating: " + rating);
+                // var p = $("<p>").text("Rating: " + rating).append("<button id='download'>" + "Download" + "</button>");
                 var image = $("<img>");
                 $("#gifs").prepend("<img>");
                 image.attr("src", results[i].images.fixed_height_still.url);
@@ -50,12 +55,26 @@ $(document).ready(function () {
                 image.attr("data-animate", results[i].images.fixed_height.url);
                 image.attr("data-state", "still");
                 image.attr("class", "gif");
-                image.css("height", "160px");
+                image.attr("id", counter);
                 image.css("width", "240px");
                 gifDiv.append(p);
                 gifDiv.prepend(image);
                 $("#gifs").prepend(gifDiv);
+                gifDiv.css("display", "inline-block");
+                gifDiv.css("vertical-align", "bottom");
             }
+
+
+            $(document).on("click", "#download", function () {
+                console.log($(".gif").attr("id"));
+                // for (var i = 0; i < results.length; i++) {
+                //     window.open(results[index].url);
+                // }
+            });
+
+
+
+
         });
 
         $.ajax({
@@ -69,7 +88,10 @@ $(document).ready(function () {
             $("#movieInfo").prepend("<tr><td id='title'>" + response.Title + "</td><tr><td>" + response.Year + "</td><tr><td>" + "<img src=" + response.Poster + "height='300px' width='200px'>" + "</td>");
         });
 
+
+
     });
+
 
 
     $(document).on("click", ".gif", function () {
