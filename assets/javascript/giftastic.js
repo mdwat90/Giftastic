@@ -30,8 +30,8 @@ $(document).ready(function () {
         clickGif.fadeIn(1000);
         var movie = $(this).text();
         var counter = 0;
-        var queryurl = "http://api.giphy.com/v1/gifs/search?q=" + movie + "&api_key=mGLsTKX4l3wSH9hTzlisvBaVJFzRhAC9";
-        var queryurl2 = "http://www.omdbapi.com/?apikey=trilogy&" + movie;
+        var queryurl = "https://api.giphy.com/v1/gifs/search?q=" + movie + "&api_key=mGLsTKX4l3wSH9hTzlisvBaVJFzRhAC9";
+        var queryurl2 = "https://www.omdbapi.com/?apikey=trilogy&" + movie;
         $.ajax({
             url: queryurl,
             method: "GET",
